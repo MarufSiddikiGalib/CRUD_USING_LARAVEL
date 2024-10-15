@@ -27,7 +27,15 @@ class ProductController extends Controller
 
    public function store(Request $request){
 
-      Product::create($request -> input());
+      // Form validation
+      $request-> validate ([
+         'name' => 'required|max:100',
+         'description' => 'nullable|min:3',
+         'size' => 'required|decimal:0,2|max:100'
+     ]);
+
+     // take the input and store it to dtabqase
+      Product::create($request -> input()); 
 
       // products.index is the route name in web.php . redirect the route using name.
       return redirect() -> route('products.index')->with('success', 'Product added successfully');

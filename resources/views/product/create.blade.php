@@ -12,23 +12,32 @@
 <div class="container mt-5">
     <h2>Add New Product</h2>
     
+    @if ($errors->any())
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+    @endif
+
+
     <!-- Laravel Form for Adding a Product -->
     <form method="POST" action="{{ route('products.store') }}">
         @csrf <!-- CSRF token for security -->
 
         <div class="mb-3">
             <label for="name" class="form-label">Product Name</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Enter product name" required>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter product name" >
         </div>
 
         <div class="mb-3">
             <label for="description" class="form-label">Product Description</label>
-            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter product description" required></textarea>
+            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter product description" ></textarea>
         </div>
 
         <div class="mb-3">
             <label for="size" class="form-label">Product Size</label>
-            <input type="text" class="form-control" id="size" name="size" placeholder="Enter product size" required>
+            <input type="text" class="form-control" id="size" name="size" placeholder="Enter product size" >
         </div>
 
         <button type="submit" class="btn btn-primary">Add Product</button>
