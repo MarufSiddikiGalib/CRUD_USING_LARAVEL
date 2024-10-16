@@ -34,11 +34,27 @@ class ProductController extends Controller
          'size' => 'required|decimal:0,2|max:100'
      ]);
 
-     // take the input and store it to dtabqase
+     // take the input and store it to dtabqase databse ORM
       Product::create($request -> input()); 
 
       // products.index is the route name in web.php . redirect the route using name.
       return redirect() -> route('products.index')->with('success', 'Product added successfully');
+   }
+
+
+   public function show(string $id){
+
+      // find is a in build method that call the individual ids . it will limit 1
+      // The executed query with this line is select * from `product` where `product`.`id` = '$id' limit 1
+      $products = Product::find($id); // we can use findOrFail method to avoid if condition bellow
+
+      if($products === null){
+        abort(404); //abort is a helper function . It shows the 404 error page
+      }
+
+      return view('product/show', [
+         'products' => $products // we can use campact function here . you will see the documentation of that func and update this line
+      ]);
    }
 
 

@@ -16,8 +16,9 @@
 
     
     @foreach ($products as $product)
-
-    <h3>{{ $product->name }}</h3>
+    
+    <!--The route('products.show', 5) will generate a URL like /products/5-->
+    <h3> <a href="{{ route('products.show', $product->id) }}" > {{ $product->name }}</a></h3>
     <p>{{ $product->description }}</p>
     <p>{{ $product->size }}</p>
 

@@ -19,4 +19,5 @@ Route::get('/create',  [ProductController::class, 'create']); // /create is the 
 
 Route::post('/store', [ProductController::class, 'store'])->name('products.store');
 
-
+// Getting the id in url . id in url must be numaric . whereNumber is allowing only number
+Route::get('/{id}',  [ProductController::class, 'show'])->name('products.show')->whereNumber('id');
