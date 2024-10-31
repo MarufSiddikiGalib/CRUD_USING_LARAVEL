@@ -58,4 +58,39 @@ class ProductController extends Controller
    }
 
 
+   public function edit(string $id){
+
+      // Fetch the product by id
+      $products = Product::find($id);
+
+     if ($products === null) {
+         abort(404);
+     }
+
+      return view('product/edit', [
+         'products' => $products // we can use campact function here . you will see the documentation of that func and update this line
+      ]);
+   }
+
+
+   public function update(Request $request, Product $product)
+    {
+        // Form validation
+      $request-> validate ([
+         'name' => 'required|max:100',
+         'description' => 'nullable|min:3',
+         'size' => 'required|decimal:0,2|max:100'
+     ]);
+
+        
+
+      // Update the product in the database
+    $product->update($request->all());
+
+    // Redirect back to the product page with a success message
+    return redirect()->route('products.show', $product)->with('status', 'Product updated');
+    }
+    
+
+
 }

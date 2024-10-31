@@ -21,3 +21,7 @@ Route::post('/store', [ProductController::class, 'store'])->name('products.store
 
 // Getting the id in url . id in url must be numaric . whereNumber is allowing only number
 Route::get('/{id}',  [ProductController::class, 'show'])->name('products.show')->whereNumber('id');
+
+Route::get('/{id}/edit',  [ProductController::class, 'edit'])->name('products.edit');
+
+Route::patch('/{product}', [ProductController::class, 'update'])->name('products.update');

@@ -16,7 +16,9 @@
 <p>{{ $products->description }}</p>
 <p>{{ $products->size }}</p>
 
-<a href="">Edit</a>
+<a href="{{  route ('products.edit' , $products->id) }} "  >Edit</a>
+
+
 
 </div>
 
